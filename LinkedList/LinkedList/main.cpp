@@ -1,35 +1,29 @@
 #include "LinkedList.h"
+#include <string>
+using namespace ds;
+
 
 int main(int argc, char* argv[])
 {
 	/* Basic node struct */
-	struct node_s
+	struct node
 	{
 		int		data;
-		node_s*	next;
 	};
 
-	/* Basic node struct */
-	struct node_d
-	{
-		int		data;
-		node_d* next;
-		node_d* prev;
-	};
+	stack::stack_array<int> sa(6);
 
-	list::linkedlist_d<node_d> list;
+	sa.push( 0 );
+	sa.push( 2 );
+	sa.push( 3 );
+	sa.push( 4 );
+	sa.push( 7 );
+	sa.push( 20 );
 
-	list.emplace_front(new node_d{ 4, nullptr, nullptr });
-	list.emplace_front(new node_d{ 6, nullptr, nullptr });
-	list.emplace_front(new node_d{ 8, nullptr, nullptr });
+	sa.pop();
 
-	list.make_circular();
-
-	std::cout << "Tail next: " << list.get(2)->next->data << "\n";
-	std::cout << "Head prev: " << list.get(0)->prev->data << "\n";
-
-	list.display(true);
-	std::cout << "\nSize: " << list.size() << "\n";
+	for (unsigned i = 0; i < sa.size(); ++i)
+		std::cout << sa.at(i) << "\n";
 
 	system("PAUSE");
 
